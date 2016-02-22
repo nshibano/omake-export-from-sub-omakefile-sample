@@ -1,0 +1,2 @@
+CMO_FILES += $(file quux.cmo)
+export

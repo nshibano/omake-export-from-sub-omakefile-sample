@@ -1,0 +1,35 @@
+%.cmo: %.ml
+  ocamlc -c $<
+
+CMO_FILES[]=
+
+# following yes/no describes if sub-OMakefile contains 'export'
+
+.SUBDIRS: foo # no
+
+.SUBDIRS: bar # yes
+
+export
+.SUBDIRS: baz # no
+
+export
+.SUBDIRS: qux # no
+  include OMakefile
+
+.SUBDIRS: quux # yes
+  include OMakefile
+
+.SUBDIRS: corge # no
+  include OMakefile
+  export
+
+hello.exe : $(CMO_FILES)
+  rm -f $@
+  ocamlc $+ -o $@
+
+.DEFAULT: hello.exe
+  ./hello.exe # =>
+# baz
+# qux
+# quux
+# corge

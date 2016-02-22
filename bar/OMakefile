@@ -1,0 +1,2 @@
+CMO_FILES += $(file bar.cmo)
+export

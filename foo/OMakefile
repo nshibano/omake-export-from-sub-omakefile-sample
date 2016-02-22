@@ -1,0 +1,1 @@
+CMO_FILES += $(file foo.cmo)
